@@ -33,6 +33,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
+  final navigatonBarText = {
+    0: 'Home',
+    1: 'Explore'
+  };
   static const a = ConstantInstance([1], {'test': 1}, '');
 
   void _incrementCounter() {
@@ -53,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       tabBar: CupertinoTabBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.folder_fill), label: 'Home'),
+              icon: Icon(CupertinoIcons.archivebox_fill), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.eye_solid), label: 'Explore')
         ],
@@ -61,8 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
       tabBuilder: (context, i) {
         return CupertinoTabView(builder: (context) {
           return CupertinoPageScaffold(
+            navigationBar: CupertinoNavigationBar(
+              middle: Text('${navigatonBarText[i]}'),
+            ),
             child: Center(
-              child: Text('Hello cupertino!',
+              child: Text(
+                 'Hello cupertino! Page $i',
                   style: CupertinoTheme.of(context)
                       .textTheme
                       .navLargeTitleTextStyle),
