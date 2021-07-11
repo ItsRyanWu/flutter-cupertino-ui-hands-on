@@ -1,4 +1,4 @@
-# flutter_hands_on
+# Flutter Cupertino UI hands on
 
 A new Flutter project.
 
