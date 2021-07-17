@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
               navLargeTitleTextStyle: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 70,
-                  color: CupertinoColors.activeBlue))),
+                  color: CupertinoColors.activeBlue
+          )
+        )
+      ),
     );
   }
 }

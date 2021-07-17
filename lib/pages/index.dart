@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/Components/my-scroll-view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -54,10 +55,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 middle: Text('${navigatonBarText[i]}'),
               ),
               child: Center(
-                child: Text('Hello cupertino! Page $i',
-                    style: CupertinoTheme.of(context)
-                        .textTheme
-                        .navLargeTitleTextStyle),
+                child: Container(
+                  color: Colors.green[50],
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Hello cupertino! Page $i',
+                        style: CupertinoTheme.of(context)
+                            .textTheme
+                            .navLargeTitleTextStyle
+                      ),
+                      LayoutBuilder(builder: (_, constraints) {
+                        print(constraints);
+                        return Container(child: Text('test'));
+                      }),
+                      Expanded(
+                        flex: 1,
+                        child: LayoutBuilder(builder: (_, constraints) {
+                          print(constraints);
+                          return Center(
+                            child: Text('Test')
+                          );
+                        })
+                      )
+                    ],
+                  ),
+                )
               ),
             );
           }
