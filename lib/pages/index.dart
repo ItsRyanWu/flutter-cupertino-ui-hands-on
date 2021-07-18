@@ -12,22 +12,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
   final navigatonBarText = {0: 'Home', 1: 'Explore'};
-  static const a = ConstantInstance([1], {'test': 1}, '');
-
-  void _incrementCounter() {
-    print(a);
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // static const a = ConstantInstance([1], {'test': 1}, '');
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       tabBuilder: (context, i) {
         return CupertinoTabView(builder: (context) {
-          if (i == 0) {
+          if (i != 0) {
             return CupertinoPageScaffold(
               navigationBar: CupertinoNavigationBar(
                 middle: Text('${navigatonBarText[i]}'),
@@ -70,14 +57,45 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       LayoutBuilder(builder: (_, constraints) {
                         print(constraints);
-                        return Container(child: Text('test'));
+                        return Container(
+                          child: Text('Text')
+                        );
                       }),
                       Expanded(
                         flex: 1,
                         child: LayoutBuilder(builder: (_, constraints) {
                           print(constraints);
-                          return Center(
-                            child: Text('Test')
+                          return Container(
+                            color: Colors.blue[50],
+                            child: Center(
+                              child: Container(
+                                width: 300,
+                                height: 300,
+                                color: Colors.red[50],
+                                constraints: BoxConstraints(
+                                  maxHeight: 250,
+                                  maxWidth: 250
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Positioned(
+                                      right: 0,
+                                      top: 0,
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        color: Colors.yellow[50]
+                                      ),
+                                    ),
+                                    LayoutBuilder(builder: (_, constraints) {
+                                      print('Stack constriants for children: $constraints');
+                                      return Text('Flex area');
+                                    })
+                                  ],
+                                )
+                              )
+                            )
                           );
                         })
                       )
