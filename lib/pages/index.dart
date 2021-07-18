@@ -69,25 +69,29 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.blue[50],
                             child: Center(
                               child: Container(
-                                width: 300,
-                                height: 300,
+                                // width: 300,
+                                // height: 300,
                                 color: Colors.red[50],
                                 constraints: BoxConstraints(
                                   maxHeight: 250,
-                                  maxWidth: 250
+                                  minHeight: 50,
+                                  maxWidth: 250,
+                                  minWidth: 50
                                 ),
                                 child: Stack(
+                                  fit: StackFit.passthrough,
                                   alignment: Alignment.center,
                                   children: [
-                                    Positioned(
-                                      right: 0,
-                                      top: 0,
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
+                                    // Positioned(
+                                    //   right: 0,
+                                    //   top: 0,
+                                    //   child: 
+                                      Container(
+                                        width: 40,
+                                        height: 40,
                                         color: Colors.yellow[50]
                                       ),
-                                    ),
+                                    // ),
                                     LayoutBuilder(builder: (_, constraints) {
                                       print('Stack constriants for children: $constraints');
                                       return Text('Flex area');
