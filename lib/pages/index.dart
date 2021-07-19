@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/Components/my-scroll-view.dart';
+import 'package:flutter_hands_on/Components/underline.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -13,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final navigatonBarText = {0: 'Home', 1: 'Explore'};
+  final navigatonBarText = {0: 'List', 1: 'FLex', 2: 'Custom'};
   // static const a = ConstantInstance([1], {'test': 1}, '');
 
   @override
@@ -22,21 +23,23 @@ class _MyHomePageState extends State<MyHomePage> {
       tabBar: CupertinoTabBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.archivebox_fill), label: 'Home'),
+              icon: Icon(CupertinoIcons.list_bullet), label: 'List'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.eye_solid), label: 'Explore')
+              icon: Icon(CupertinoIcons.rectangle_fill), label: 'Flex'),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.triangle_fill), label: 'Custom')
         ],
       ),
       tabBuilder: (context, i) {
         return CupertinoTabView(builder: (context) {
-          if (i != 0) {
+          if (i == 0) {
             return CupertinoPageScaffold(
               navigationBar: CupertinoNavigationBar(
                 middle: Text('${navigatonBarText[i]}'),
               ),
               child: MyScrollView()
             );
-          } else {
+          } else if (i == 1) {
             return CupertinoPageScaffold(
               navigationBar: CupertinoNavigationBar(
                 middle: Text('${navigatonBarText[i]}'),
@@ -55,12 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             .textTheme
                             .navLargeTitleTextStyle
                       ),
-                      LayoutBuilder(builder: (_, constraints) {
-                        print(constraints);
-                        return Container(
-                          child: Text('Text')
-                        );
-                      }),
                       Expanded(
                         flex: 1,
                         child: LayoutBuilder(builder: (_, constraints) {
@@ -107,6 +104,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 )
               ),
+            );
+          } else {
+            return  CupertinoPageScaffold(
+              navigationBar: CupertinoNavigationBar(
+                middle: Text('${navigatonBarText[i]}'),
+              ),
+              child: underline(
+                children: [
+                  LayoutId(
+                    id: Slot.Text,
+                    child: Container(
+                      color: Colors.purple[50],
+                      width: double.infinity,
+                      height: 300
+                    )
+                  ),
+                  LayoutId(id:
+                    Slot.Line, 
+                    child: Container(
+                      color: Colors.orange[50],
+                    )
+                  )
+                ]
+              )
             );
           }
         });
